@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import PostFetch from "./components/PostFetch";
+import PostOffices from "./components/PostOffices";
+import { Routes, Route } from "react-router-dom";
+import { useState } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+const App = ()=>{
+
+  const [postData, setPostData] = useState(null);
+  const [pincode, setPincode] = useState("");
+
+  return(
+    <div>
+      <Routes>
+        <Route path="/" element={<PostFetch setPostData={setPostData} setPincode={setPincode} pincode={pincode}/>}/>
+        <Route path="/offices" element={<PostOffices postData={postData} pincode={pincode}/>}/>
+      </Routes>
     </div>
-  );
+  )
 }
-
 export default App;
